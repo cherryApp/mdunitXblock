@@ -79,7 +79,7 @@ class mdUnit(XBlock):
         context = {
             'display_name': self.display_name,
             'md_url': self.md_url,
-            'md_content': __name__
+            'md_content': __file__
         }
 
         html = self.resource_string("static/html/mdunit_edit.html")
