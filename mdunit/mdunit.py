@@ -68,7 +68,7 @@ class mdUnit(XBlock):
         return frag
 
     def studio_view(self, context=None):
-        self.md_url = 'https://xlearning.training360.com/asset-v1:Training360+1001+2019_T1+type@asset+block@14_html_form.md'
+        self.md_url = ''
         content = ""
 
         context = {
@@ -101,6 +101,18 @@ class mdUnit(XBlock):
 
         self.count += 1
         return {"count": self.count}
+
+    @XBlock.json_handler
+    def save_mdunit(self, data, suffix=''):
+        """
+        The saving handler.
+        """
+        self.display_name = data['display_name']
+        self.md_url = data['md_url']
+
+        return {
+            'result': 'success',
+        }
 
     # TO-DO: change this to create the scenarios you'd like to see in the
     # workbench while developing your XBlock.
