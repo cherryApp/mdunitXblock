@@ -1,7 +1,7 @@
 """TO-DO: Write a description of what this XBlock is."""
 
 import os
-import relevant_file
+import urllib2
 import pkg_resources
 
 from yaml import load, dump
@@ -68,9 +68,8 @@ class mdUnit(XBlock):
         return frag
 
     def studio_view(self, context=None):
-        self.md_url = self.runtime.local_resource_url(
-            self, '/static/14_html_form.md')
-        self.md_url = os.path.join(relevant_fle.BASEDIR, "static")
+        self.md_url = 'https://xlearning.training360.com/asset-v1:Training360+1001+2019_T1+type@asset+block@14_html_form.md'
+        contents = urllib2.urlopen(md_url).read()
 
         '''
         md = open(self.md_url, "r")
@@ -80,7 +79,7 @@ class mdUnit(XBlock):
         context = {
             'display_name': self.display_name,
             'md_url': self.md_url,
-            # 'md_content': self.md_content
+            'md_content': contents
         }
 
         html = self.resource_string("static/html/mdunit_edit.html")
