@@ -54,11 +54,7 @@ class mdUnit(XBlock):
         """
         html = self.resource_string("static/html/mdunit.html")
         frag = Fragment(html.format(self=self))
-        frag.add_css(self.resource_string(
-            "static/lib/bootstrap-4.3.1-dist/css/bootstrap.min.css"))
         frag.add_css(self.resource_string("static/css/mdunit.css"))
-        frag.add_javascript(self.resource_string(
-            "static/lib/bootstrap-4.3.1-dist/js/bootstrap.min.js"))
         frag.add_javascript(self.resource_string("static/js/src/mdunit.js"))
         frag.initialize_js('mdUnit')
         return frag
@@ -76,11 +72,9 @@ class mdUnit(XBlock):
         template_str = unicode(html)
         template_str = Template(template_str).render(Context(context))
         frag = Fragment(template_str)
-        frag.add_css(self.resource_string(
-            "static/lib/bootstrap-4.3.1-dist/css/bootstrap.min.css"))
+        # frag.add_css(self.resource_string("static/lib/bootstrap-4.3.1-dist/css/bootstrap.min.css"))
         frag.add_css(self.resource_string("static/css/mdunit_edit.css"))
-        frag.add_javascript(self.resource_string(
-            "static/lib/bootstrap-4.3.1-dist/js/bootstrap.min.js"))
+        # frag.add_javascript(self.resource_string("static/lib/bootstrap-4.3.1-dist/js/bootstrap.min.js"))
         frag.add_javascript(self.resource_string(
             "static/js/src/mdunit_edit.js"))
         frag.initialize_js('mdUnitEdit')
