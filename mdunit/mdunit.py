@@ -69,7 +69,7 @@ class mdUnit(XBlock):
 
     def studio_view(self, context=None):
         self.md_url = 'https://xlearning.training360.com/asset-v1:Training360+1001+2019_T1+type@asset+block@14_html_form.md'
-        contents = urllib2.urlopen(md_url).read()
+        contents = urllib2.urlopen(self.md_url).read()
 
         '''
         md = open(self.md_url, "r")
