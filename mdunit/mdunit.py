@@ -1,9 +1,17 @@
 """TO-DO: Write a description of what this XBlock is."""
 
 import pkg_resources
+
+from yaml import load, dump
+try:
+    from yaml import CLoader as YAMLLoader
+except ImportError:
+    from yaml import Loader as YAMLLoader
+
 from xblock.core import XBlock
-from xblock.fields import Integer, Scope
+from xblock.fields import Integer, Scope, String
 from xblock.fragment import Fragment
+from xblock.runtime import IdGenerator
 
 
 class mdUnit(XBlock):
@@ -48,7 +56,8 @@ class mdUnit(XBlock):
         html = self.resource_string("static/html/mdunit_edit.html")
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/mdunit_edit.css"))
-        frag.add_javascript(self.resource_string("static/js/src/mdunit_edit.js"))
+        frag.add_javascript(self.resource_string(
+            "static/js/src/mdunit_edit.js"))
         frag.initialize_js('mdUnitEdit')
         return frag
 
