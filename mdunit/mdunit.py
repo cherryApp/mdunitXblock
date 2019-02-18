@@ -1,5 +1,6 @@
 """TO-DO: Write a description of what this XBlock is."""
 
+import os
 import pkg_resources
 
 from yaml import load, dump
@@ -68,14 +69,17 @@ class mdUnit(XBlock):
     def studio_view(self, context=None):
         self.md_url = self.runtime.local_resource_url(
             self, '/static/14_html_form.md')
+        self.md_url = os.path.join(BASE_DIR, "static")
 
+        '''
         md = open(self.md_url, "r")
         self.md_content = md.read()
+        '''
 
         context = {
             'display_name': self.display_name,
             'md_url': self.md_url,
-            'md_content': self.md_content
+            # 'md_content': self.md_content
         }
 
         html = self.resource_string("static/html/mdunit_edit.html")
