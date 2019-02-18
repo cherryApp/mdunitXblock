@@ -14,7 +14,10 @@ from xblock.core import XBlock
 from xblock.fields import Integer, Scope, String
 from xblock.fragment import Fragment
 from xblock.runtime import IdGenerator
+
 from django.template import Context, Template
+from xmodule.contentstore.content import StaticContent
+from xmodule.contentstore.django import contentstore
 
 
 class mdUnit(XBlock):
@@ -71,15 +74,15 @@ class mdUnit(XBlock):
         self.md_url = 'https://xlearning.training360.com/asset-v1:Training360+1001+2019_T1+type@asset+block@14_html_form.md'
         # contents = urllib2.urlopen(self.md_url).read()
 
-        '''
-        md = open(self.md_url, "r")
-        self.md_content = md.read()
-        '''
+        course_id = self.xmodule_runtime.course_id
+        loc = StaticContent.compute_location(course_id, '/static/14_html_form.md')
+        asset = contentstore().find(loc)
+        content = asset.data
 
         context = {
             'display_name': self.display_name,
             'md_url': self.md_url,
-            'md_content': __file__
+            'md_content': content
         }
 
         html = self.resource_string("static/html/mdunit_edit.html")
