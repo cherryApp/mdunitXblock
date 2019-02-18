@@ -34,6 +34,8 @@ class mdUnit(XBlock):
         scope=Scope.settings
     )
 
+    md_url = ""
+
     def resource_string(self, path):
         """Handy helper for getting resources from our kit."""
         data = pkg_resources.resource_string(__name__, path)
@@ -57,6 +59,14 @@ class mdUnit(XBlock):
         return frag
 
     def studio_view(self, context=None):
+        self.md_url = self.runtime.local_resource_url(
+            self, '/static/14_html_form.md')
+
+        context = {
+            'display_name': self.display_name,
+            'md_url': self.md_url
+        }
+
         html = self.resource_string("static/html/mdunit_edit.html")
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string(
