@@ -20,6 +20,12 @@ class mdUnit(XBlock):
         help="A simple counter, to show something happening",
     )
 
+    display_name = String(
+        display_name=u"Display Name",
+        default="Markdown",
+        scope=Scope.settings
+    )
+
     def resource_string(self, path):
         """Handy helper for getting resources from our kit."""
         data = pkg_resources.resource_string(__name__, path)
@@ -36,6 +42,14 @@ class mdUnit(XBlock):
         frag.add_css(self.resource_string("static/css/mdunit.css"))
         frag.add_javascript(self.resource_string("static/js/src/mdunit.js"))
         frag.initialize_js('mdUnit')
+        return frag
+
+    def studio_view(self, context=None):
+        html = self.resource_string("static/html/mdunit_edit.html")
+        frag = Fragment(html.format(self=self))
+        frag.add_css(self.resource_string("static/css/mdunit_edit.css"))
+        frag.add_javascript(self.resource_string("static/js/src/mdunit_edit.js"))
+        frag.initialize_js('mdUnitEdit')
         return frag
 
     # TO-DO: change this handler to perform your own actions.  You may need more
