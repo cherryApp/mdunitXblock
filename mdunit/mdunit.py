@@ -41,6 +41,12 @@ class mdUnit(XBlock):
         help="The path of .md file."
     )
 
+    md_content = String(
+        default="",
+        scope=Scope.settings,
+        help="Markdown"
+    )
+
     def resource_string(self, path):
         """Handy helper for getting resources from our kit."""
         data = pkg_resources.resource_string(__name__, path)
@@ -63,9 +69,13 @@ class mdUnit(XBlock):
         self.md_url = self.runtime.local_resource_url(
             self, '/static/14_html_form.md')
 
+        md = open(self.md_url, "r")
+        self.md_content = md.read()
+
         context = {
             'display_name': self.display_name,
-            'md_url': self.md_url
+            'md_url': self.md_url,
+            'md_content': self.md_content
         }
 
         html = self.resource_string("static/html/mdunit_edit.html")
