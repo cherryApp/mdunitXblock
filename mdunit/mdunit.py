@@ -12,6 +12,7 @@ from xblock.core import XBlock
 from xblock.fields import Integer, Scope, String
 from xblock.fragment import Fragment
 from xblock.runtime import IdGenerator
+from django.template import Context, Template
 
 
 class mdUnit(XBlock):
@@ -29,12 +30,16 @@ class mdUnit(XBlock):
     )
 
     display_name = String(
-        display_name=u"Display Name",
         default="Markdown",
-        scope=Scope.settings
+        scope=Scope.settings,
+        help="XBlock name."
     )
 
-    md_url = ""
+    md_url = String(
+        default="",
+        scope=Scope.settings,
+        help="The path of .md file."
+    )
 
     def resource_string(self, path):
         """Handy helper for getting resources from our kit."""
@@ -68,7 +73,9 @@ class mdUnit(XBlock):
         }
 
         html = self.resource_string("static/html/mdunit_edit.html")
-        frag = Fragment(html.format(self=self))
+        template_str = unicode(html)
+        template_str = Template(template_str).render(Context(context))
+        frag = Fragment(template_str)
         frag.add_css(self.resource_string(
             "static/lib/bootstrap-4.3.1-dist/css/bootstrap.min.css"))
         frag.add_css(self.resource_string("static/css/mdunit_edit.css"))
