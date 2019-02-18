@@ -1,4 +1,4 @@
-/* Javascript for {{cookiecutter.class_name}}. */
+/* Javascript for mdUnit. */
 function mdUnit(runtime, element) {
 
     function updateCount(result) {

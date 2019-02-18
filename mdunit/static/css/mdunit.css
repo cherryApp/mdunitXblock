@@ -1,9 +1,9 @@
-/* CSS for {{cookiecutter.class_name}} */
+/* CSS for mdUnit */
 
-.{{cookiecutter.short_name}}_block .count {
+.mdunit_block .count {
     font-weight: bold;
 }
 
-.{{cookiecutter.short_name}}_block p {
+.mdunit_block p {
     cursor: pointer;
 }
