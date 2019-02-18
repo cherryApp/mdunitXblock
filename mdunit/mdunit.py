@@ -1,7 +1,6 @@
 """TO-DO: Write a description of what this XBlock is."""
 
 import os
-import urllib2
 import pkg_resources
 
 from yaml import load, dump
@@ -16,8 +15,6 @@ from xblock.fragment import Fragment
 from xblock.runtime import IdGenerator
 
 from django.template import Context, Template
-from xmodule.contentstore.content import StaticContent
-from xmodule.contentstore.django import contentstore
 
 
 class mdUnit(XBlock):
@@ -72,9 +69,7 @@ class mdUnit(XBlock):
 
     def studio_view(self, context=None):
         self.md_url = 'https://xlearning.training360.com/asset-v1:Training360+1001+2019_T1+type@asset+block@14_html_form.md'
-        # contents = urllib2.urlopen(self.md_url).read()
-
-        content = self.resource_string('/static/14_html_form.md')
+        content = ""
 
         context = {
             'display_name': self.display_name,

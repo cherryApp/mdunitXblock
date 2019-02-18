@@ -1,16 +1,29 @@
-<div class="form-group">
-    <label for="display_name">Display name</label>
-    <input type="text" class="form-control" id="display_name"
-        placeholder="Enter Display Name" value="{{ display_name }}">
+<div class="wrapper-comp-settings editor-with-buttons is-active" id="settings-tab">
+    <ul class="list-input settings-list">
+        <li class="field comp-setting-entry is-set">
+            <div class="wrapper-comp-setting">
+                <label class="label setting-label" for="mdunit_edit_display_name">Display Name</label>
+                <input class="input setting-input" id="mdunit_edit_display_name" value="{{ display_name }}" type="text">
+            </div>
+            <!-- 
+            <span class="tip setting-help">This name appears in the horizontal navigation at the top of the page.</span>
+            -->
+        </li>
+        <li class="field comp-setting-entry is-set">
+            <div class="wrapper-comp-setting">
+                <label class="label setting-label" for="mdunit_file_path">File path</label>
+                <input class="input setting-input" id="mdunit_file_path" value="{{ md_url }}" type="text">
+            </div>
+            <!-- 
+            <span class="tip setting-help">This name appears in the horizontal navigation at the top of the page.</span>
+            -->
+        </li>
+    </ul>
+
 </div>
-<div class="form-group">
-    <label for="md_file_path">File path</label>
-    <input type="text" class="form-control" id="md_file_path" 
-        placeholder="Enter path of .md file." value="{{ md_url }}">
-</div>
-<div class="form-group">
-    <label for="md_file_content">File content</label>
-    <textarea type="text" class="form-control" id="md_file_content">
-        {{ self.md_content }}
-    </textarea>
-</div>
+
+<!-- Hidden form for upload files. -->
+<form class="file-chooser" id="file-chooser" action="#" method="post" style="display: none"
+    enctype="multipart/form-data">
+    <input id="file_upload_input" type="file" class="file-input" name="file">
+</form>
