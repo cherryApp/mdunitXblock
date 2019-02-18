@@ -74,10 +74,7 @@ class mdUnit(XBlock):
         self.md_url = 'https://xlearning.training360.com/asset-v1:Training360+1001+2019_T1+type@asset+block@14_html_form.md'
         # contents = urllib2.urlopen(self.md_url).read()
 
-        course_id = self.xmodule_runtime.course_id
-        loc = StaticContent.compute_location(course_id, '/static/14_html_form.md')
-        asset = contentstore().find(loc)
-        content = asset.data
+        content = self.load_resource('/static/14_html_form.md')
 
         context = {
             'display_name': self.display_name,
